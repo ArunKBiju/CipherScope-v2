@@ -9,33 +9,26 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-        }
-        #input-section {
-            margin-top: 50px;
+            margin: 20px;
         }
         input, button {
-            padding: 10px;
+            padding: 8px;
+            margin: 5px;
             font-size: 16px;
-            margin: 10px;
         }
-        #search-results {
+        .search-container {
             margin-top: 20px;
-            width: 60%;
-            margin-left: auto;
-            margin-right: auto;
         }
     </style>
 </head>
 <body>
 
-    <div id="input-section">
-        <h2>Enter Instagram ID</h2>
-        <input type="text" id="instaID" placeholder="Enter Instagram ID">
-        <button onclick="performSearch()">Get Info</button>
-    </div>
+    <h2>Enter Instagram ID</h2>
+    <input type="text" id="instaID" placeholder="Enter username">
+    <button onclick="performSearch()">Get Info</button>
 
-    <div id="search-results">
-        <div class="gcse-searchresults-only"></div>
+    <div class="search-container">
+        <div class="gcse-search"></div>
     </div>
 
     <script>
@@ -48,9 +41,20 @@
 
             let searchQuery = `site:instagram.com intext:${instaID}`;
             let searchBox = document.querySelector("input.gsc-input");
+
             if (searchBox) {
                 searchBox.value = searchQuery;
-                document.querySelector(".gsc-search-button").click();
+                let searchButton = document.querySelector(".gsc-search-button");
+
+                setTimeout(() => {
+                    if (searchButton) {
+                        searchButton.click(); 
+                    } else {
+                        console.error("Search button not found!");
+                    }
+                }, 1000);
+            } else {
+                console.error("Search box not found!");
             }
         }
     </script>
