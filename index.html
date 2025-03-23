@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CipherScope - V2</title>
+    <title>CipherScope - v2</title>
     <script async src="https://cse.google.com/cse.js?cx=83e0d2c4d09af4a66"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
         }
-        #search-container {
+        #input-section {
             margin-top: 20px;
         }
         #search-results {
             margin: 20px auto;
-            width: 60%;
-            display: none;
+            width: 60%; 
+            display: none; 
         }
         input, button {
             padding: 10px;
@@ -27,11 +27,14 @@
 </head>
 <body>
 
-    <h2>Enter Instagram ID</h2>
-    <input type="text" id="instaID" placeholder="Enter Instagram ID">
-    <button onclick="performSearch()">Get Info</button>
+    <div id="input-section">
+        <h2>Enter Instagram ID</h2>
+        <input type="text" id="instaID" placeholder="Enter Instagram ID">
+        <button onclick="performSearch()">Get Info</button>
+    </div>
 
     <div id="search-results">
+        <h2>Search Results for Instagram ID</h2>
         <div class="gcse-searchresults-only"></div>
     </div>
 
@@ -42,9 +45,13 @@
                 alert("Please enter an Instagram ID!");
                 return;
             }
+
             let query = `site:instagram.com intext:${instaID}`;
             document.querySelector(".gcse-searchresults-only").setAttribute("data-query", query);
+            
+            document.getElementById("input-section").style.display = "none";
             document.getElementById("search-results").style.display = "block";
+            
             google.search.cse.element.getElement("searchresults-only").execute(query);
         }
     </script>
