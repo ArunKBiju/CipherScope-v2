@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram ID Search</title>
+    <title>CypherScope - v2</title>
     <script async src="https://cse.google.com/cse.js?cx=83e0d2c4d09af4a66"></script>
     <style>
         body {
@@ -51,7 +51,13 @@
             document.getElementById("input-section").style.display = "none";
             document.getElementById("search-container").style.display = "block";
 
-            google.search.cse.element.getElement("search-results").execute(query);
+            if (window.google && google.search && google.search.cse) {
+                google.search.cse.element.getElement("search-results").execute(query);
+            } else {
+                setTimeout(() => {
+                    google.search.cse.element.getElement("search-results").execute(query);
+                }, 1000); 
+            }
         }
     </script>
 
