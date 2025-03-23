@@ -1,57 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CipherScope - V2</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            margin: 20px;
-        }
-        .input-container {
-            margin-bottom: 20px;
-        }
-        .search-results {
-            margin: 0 10%;
-            border: 1px solid #ccc;
-            padding: 20px;
-            display: none;
-        }
-    </style>
+  <title>CipherScope - V2</title>
+  <style>
+    .search-container {
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .search-input {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    .search-button {
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .google-browser {
+      width: 90%;
+      height: 400px;
+      margin: 10px auto;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="input-container">
-            <input type="text" id="searchInput" placeholder="Enter Instagram ID">
-            <button id="searchButton">Get Info</button>
-        </div>
-        <div class="search-results" id="searchResults">
-            <iframe id="googleFrame" width="100%" height="600px" frameborder="0"></iframe>
-        </div>
-    </div>
+  <div class="search-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="Enter text to search">
+    <button id="searchButton" class="search-button">Get Info</button>
+  </div>
+  <div id="googleBrowserContainer"></div>
 
-    <script>
-        document.getElementById('searchButton').addEventListener('click', function() {
-            var searchInput = document.getElementById('searchInput').value;
-            if (searchInput.trim() === "") {
-                alert("Please enter a valid Instagram ID.");
-                return;
-            }
-            var searchQuery = encodeURIComponent(searchInput);
-            var googleSearchUrl = 'https://www.google.com/search?q=site%3A%2A%20intext%3A' + searchQuery;
-            var googleFrame = document.getElementById('googleFrame');
-            googleFrame.src = googleSearchUrl;
-            document.getElementById('searchResults').style.display = 'block';
-            googleFrame.onload = function() {
-                console.log("Google search results loaded successfully.");
-            };
-            googleFrame.onerror = function() {
-                alert("Failed to load Google search results. Please try again later.");
-            };
-        });
-    </script>
+  <script>
+    const searchButton = document.getElementById('searchButton');
+    const searchInput = document.getElementById('searchInput');
+    const googleBrowserContainer = document.getElementById('googleBrowserContainer');
+
+    searchButton.addEventListener('click', function() {
+      const searchTerm = searchInput.value;
+      const googleSearchUrl = `https://www.google.com/search?q=site%3A%2A%20intext%3A${encodeURIComponent(searchTerm)}`;
+
+      const iframe = document.createElement('iframe');
+      iframe.src = googleSearchUrl;
+      iframe.classList.add('google-browser');
+
+      googleBrowserContainer.appendChild(iframe);
+    });
+  </script>
 </body>
 </html>
