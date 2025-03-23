@@ -1,57 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>CipherScope - V2</title>
-  <style>
-    .search-container {
-      margin: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .search-input {
-      width: 100%;
-      padding: 5px;
-      margin-bottom: 10px;
-    }
-    .search-button {
-      padding: 5px 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .google-browser {
-      width: 90%;
-      height: 400px;
-      margin: 10px auto;
-      border: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CipherScope - V2</title>
+    <script async src="https://cse.google.com/cse.js?cx=83e0d2c4d09af4a66"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #search-container {
+            margin-top: 20px;
+        }
+        #search-results {
+            margin: 20px auto;
+            width: 80%;
+            display: none;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
-  <div class="search-container">
-    <input type="text" id="searchInput" class="search-input" placeholder="Enter text to search">
-    <button id="searchButton" class="search-button">Get Info</button>
-  </div>
-  <div id="googleBrowserContainer"></div>
 
-  <script>
-    const searchButton = document.getElementById('searchButton');
-    const searchInput = document.getElementById('searchInput');
-    const googleBrowserContainer = document.getElementById('googleBrowserContainer');
+    <h2>Enter Instagram ID</h2>
+    <input type="text" id="instaID" placeholder="Enter Instagram ID">
+    <button onclick="performSearch()">Get Info</button>
 
-    searchButton.addEventListener('click', function() {
-      const searchTerm = searchInput.value;
-      const googleSearchUrl = `https://www.google.com/search?q=site%3A%2A%20intext%3A${encodeURIComponent(searchTerm)}`;
+    <div id="search-results">
+        <div class="gcse-searchresults-only"></div>
+    </div>
 
-      const iframe = document.createElement('iframe');
-      iframe.src = googleSearchUrl;
-      iframe.classList.add('google-browser');
+    <script>
+        function performSearch() {
+            let instaID = document.getElementById("instaID").value.trim();
+            if (instaID === "") {
+                alert("Please enter an Instagram ID!");
+                return;
+            }
+            let query = `site:* intext:${instaID}`;
+            document.querySelector(".gcse-searchresults-only").setAttribute("data-query", query);
+            document.getElementById("search-results").style.display = "block";
+            google.search.cse.element.getElement("searchresults-only").execute(query);
+        }
+    </script>
 
-      googleBrowserContainer.appendChild(iframe);
-    });
-  </script>
 </body>
 </html>
