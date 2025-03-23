@@ -37,7 +37,7 @@
         document.getElementById('searchButton').addEventListener('click', function() {
             var searchInput = document.getElementById('searchInput').value;
             var searchQuery = encodeURIComponent(searchInput);
-            var googleSearchUrl = 'https://www.google.com/search?q=site%3A%2A%20intext%3A' + searchQuery;
+            var googleSearchUrl = 'https://www.google.com';
             document.getElementById('googleFrame').src = googleSearchUrl;
             document.getElementById('searchResults').style.display = 'block';
         });
