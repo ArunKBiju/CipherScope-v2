@@ -36,10 +36,21 @@
     <script>
         document.getElementById('searchButton').addEventListener('click', function() {
             var searchInput = document.getElementById('searchInput').value;
+            if (searchInput.trim() === "") {
+                alert("Please enter a valid Instagram ID.");
+                return;
+            }
             var searchQuery = encodeURIComponent(searchInput);
-            var googleSearchUrl = 'https://www.google.com';
-            document.getElementById('googleFrame').src = googleSearchUrl;
+            var googleSearchUrl = 'https://www.google.com/search?q=site%3A%2A%20intext%3A' + searchQuery;
+            var googleFrame = document.getElementById('googleFrame');
+            googleFrame.src = googleSearchUrl;
             document.getElementById('searchResults').style.display = 'block';
+            googleFrame.onload = function() {
+                console.log("Google search results loaded successfully.");
+            };
+            googleFrame.onerror = function() {
+                alert("Failed to load Google search results. Please try again later.");
+            };
         });
     </script>
 </body>
