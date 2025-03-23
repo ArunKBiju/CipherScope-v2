@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CipherScope - V2</title>
-
-    <script async src="https://cse.google.com/cse.js?cx=83e0d2c4d09af4a66">
-</script>
-<div class="gcse-searchbox-only"></div>
-    
+    <script async src="https://cse.google.com/cse.js?cx=83e0d2c4d09af4a66"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,7 +15,7 @@
         }
         #search-results {
             margin: 20px auto;
-            width: 80%;
+            width: 60%;
             display: none;
         }
         input, button {
@@ -46,7 +42,7 @@
                 alert("Please enter an Instagram ID!");
                 return;
             }
-            let query = `site:* intext:${instaID}`;
+            let query = `site:instagram.com intext:${instaID}`;
             document.querySelector(".gcse-searchresults-only").setAttribute("data-query", query);
             document.getElementById("search-results").style.display = "block";
             google.search.cse.element.getElement("searchresults-only").execute(query);
