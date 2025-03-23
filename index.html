@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CipherScope - v2</title>
+    <title>Instagram ID Search</title>
     <script async src="https://cse.google.com/cse.js?cx=83e0d2c4d09af4a66"></script>
     <style>
         body {
@@ -13,10 +13,10 @@
         #input-section {
             margin-top: 20px;
         }
-        #search-results {
+        #search-container {
             margin: 20px auto;
-            width: 60%; 
-            display: none; 
+            width: 60%;
+            display: none;
         }
         input, button {
             padding: 10px;
@@ -33,9 +33,9 @@
         <button onclick="performSearch()">Get Info</button>
     </div>
 
-    <div id="search-results">
-        <h2>Search Results for Instagram ID</h2>
-        <div class="gcse-searchresults-only"></div>
+    <div id="search-container">
+        <h2>Search Results</h2>
+        <div class="gcse-searchresults-only" id="search-results"></div>
     </div>
 
     <script>
@@ -47,12 +47,11 @@
             }
 
             let query = `site:instagram.com intext:${instaID}`;
-            document.querySelector(".gcse-searchresults-only").setAttribute("data-query", query);
-            
+
             document.getElementById("input-section").style.display = "none";
-            document.getElementById("search-results").style.display = "block";
-            
-            google.search.cse.element.getElement("searchresults-only").execute(query);
+            document.getElementById("search-container").style.display = "block";
+
+            google.search.cse.element.getElement("search-results").execute(query);
         }
     </script>
 
