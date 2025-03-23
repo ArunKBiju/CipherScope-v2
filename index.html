@@ -19,6 +19,12 @@
         .search-container {
             margin-top: 20px;
         }
+        .gsc-input, .gsc-search-button {
+            display: none !important;
+        }
+        .gsc-url-top, .gsc-url-bottom {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -40,22 +46,23 @@
             }
 
             let searchQuery = `site:instagram.com intext:${instaID}`;
-            let searchBox = document.querySelector("input.gsc-input");
+            
+            let checkExist = setInterval(() => {
+                let searchBox = document.querySelector("input.gsc-input");
+                if (searchBox) {
+                    clearInterval(checkExist);
+                    searchBox.value = searchQuery;
+                    let searchButton = document.querySelector(".gsc-search-button");
 
-            if (searchBox) {
-                searchBox.value = searchQuery;
-                let searchButton = document.querySelector(".gsc-search-button");
-
-                setTimeout(() => {
-                    if (searchButton) {
-                        searchButton.click(); 
-                    } else {
-                        console.error("Search button not found!");
-                    }
-                }, 1000);
-            } else {
-                console.error("Search box not found!");
-            }
+                    setTimeout(() => {
+                        if (searchButton) {
+                            searchButton.click(); 
+                        } else {
+                            console.error("Search button not found!");
+                        }
+                    }, 500);
+                }
+            }, 200);
         }
     </script>
 
